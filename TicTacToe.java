@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
 
@@ -8,10 +9,17 @@ public class TicTacToe {
     static char humanSymbol;
     static char computerSymbol;
 
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         initializeBoard();
         tossAndAssignSymbols();
+
+        int slot = getUserSlot();
+
+        System.out.println("Slot entered: " + slot);
+
         printBoard();
     }
 
@@ -45,6 +53,14 @@ public class TicTacToe {
 
             System.out.println("Computer starts first with symbol X");
         }
+    }
+
+    static int getUserSlot() {
+
+        System.out.print("Enter slot number (1-9): ");
+        int slot = scanner.nextInt();
+
+        return slot;
     }
 
     static void printBoard() {
