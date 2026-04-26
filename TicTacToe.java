@@ -22,8 +22,11 @@ public class TicTacToe {
         int row = getRowFromSlot(slot);
         int col = getColFromSlot(slot);
 
-        System.out.println("Row: " + row);
-        System.out.println("Column: " + col);
+        if (isValidMove(row, col)) {
+            System.out.println("Valid move");
+        } else {
+            System.out.println("Invalid move");
+        }
 
         printBoard();
     }
@@ -74,6 +77,19 @@ public class TicTacToe {
     static int getColFromSlot(int slot) {
 
         return (slot - 1) % 3;
+    }
+
+    static boolean isValidMove(int row, int col) {
+
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        return true;
     }
 
     static void printBoard() {
