@@ -39,6 +39,11 @@ public class TicTacToe {
 
                         System.out.println("Human wins");
                         gameOver = true;
+
+                    } else if (isDraw()) {
+
+                        System.out.println("Game is a draw");
+                        gameOver = true;
                     }
 
                     isHumanTurn = false;
@@ -66,6 +71,11 @@ public class TicTacToe {
                 if (hasWon(computerSymbol)) {
 
                     System.out.println("Computer wins");
+                    gameOver = true;
+
+                } else if (isDraw()) {
+
+                    System.out.println("Game is a draw");
                     gameOver = true;
                 }
 
@@ -101,6 +111,23 @@ public class TicTacToe {
             return true;
 
         return false;
+    }
+
+
+    static boolean isDraw() {
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+
+                if (board[i][j] == '-') {
+
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 
