@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
 
@@ -8,40 +9,57 @@ public class TicTacToe {
         {'-', '-', '-'}
     };
 
+    static boolean isHumanTurn = true;
+    static boolean gameOver = false;
+
+    static char humanSymbol = 'X';
     static char computerSymbol = 'O';
+
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        computerMove();
+        while (!gameOver) {
 
-        printBoard();
-    }
+            if (isHumanTurn) {
 
-    static void computerMove() {
+                int slot = scanner.nextInt();
 
-        Random random = new Random();
+                int row = (slot - 1) / 3;
+                int col = (slot - 1) % 3;
 
-        int slot;
-        int row;
-        int col;
+                if (board[row][col] == '-') {
 
-        do {
+                    board[row][col] = humanSymbol;
 
-            slot = random.nextInt(9) + 1;
+                    isHumanTurn = false;
+                }
 
-            row = (slot - 1) / 3;
-            col = (slot - 1) % 3;
+            } else {
 
-        } while (board[row][col] != '-');
+                Random random = new Random();
 
-        board[row][col] = computerSymbol;
+                int slot, row, col;
 
-        System.out.println("Computer placed at slot: " + slot);
+                do {
+
+                    slot = random.nextInt(9) + 1;
+
+                    row = (slot - 1) / 3;
+                    col = (slot - 1) % 3;
+
+                } while (board[row][col] != '-');
+
+                board[row][col] = computerSymbol;
+
+                isHumanTurn = true;
+            }
+
+            printBoard();
+        }
     }
 
     static void printBoard() {
-
-        System.out.println("Current Board:");
 
         for (int i = 0; i < 3; i++) {
 
